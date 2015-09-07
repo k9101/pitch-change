@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Pitch_Perfect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +15,64 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H6b-3x-Bjs">
+                                <rect key="frame" x="251" y="250" width="100" height="100"/>
+                                <animations/>
+                                <state key="normal" image="microphone">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="recordButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cvV-MM-T7B"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording in Progress..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmV-pB-eGU">
+                                <rect key="frame" x="220" y="358" width="161" height="17.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="nr8-BK-o7y">
+                                <rect key="frame" x="291" y="378" width="20" height="20"/>
+                                <animations/>
+                            </activityIndicatorView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lHV-pC-lo3">
+                                <rect key="frame" x="276" y="530" width="50" height="50"/>
+                                <animations/>
+                                <state key="normal" image="stop">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stopRecording:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="iuT-Ci-h7f"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.27315304926638839" green="0.55645026107396123" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="hmV-pB-eGU" secondAttribute="centerX" constant="-1" id="6hT-Xr-HTX"/>
+                            <constraint firstItem="nr8-BK-o7y" firstAttribute="top" secondItem="hmV-pB-eGU" secondAttribute="bottom" constant="2.5" id="8SW-wp-ESI"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="lHV-pC-lo3" secondAttribute="bottom" constant="20" id="9H6-7a-wxm"/>
+                            <constraint firstAttribute="centerX" secondItem="lHV-pC-lo3" secondAttribute="centerX" constant="-1" id="AEm-gE-pGp"/>
+                            <constraint firstAttribute="centerY" secondItem="H6b-3x-Bjs" secondAttribute="centerY" id="L9D-gB-iMg"/>
+                            <constraint firstItem="hmV-pB-eGU" firstAttribute="top" secondItem="H6b-3x-Bjs" secondAttribute="bottom" constant="8" id="Ra1-pe-1Oh"/>
+                            <constraint firstAttribute="centerX" secondItem="H6b-3x-Bjs" secondAttribute="centerX" constant="-1" id="WFe-hT-XGY"/>
+                            <constraint firstAttribute="centerX" secondItem="nr8-BK-o7y" secondAttribute="centerX" constant="-1" id="fZ5-on-qah"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loadingIcon" destination="nr8-BK-o7y" id="sYq-AY-wuB"/>
+                        <outlet property="recordingInProgressLabel" destination="hmV-pB-eGU" id="5ty-Ta-JvV"/>
+                        <outlet property="stopRecordingButton" destination="lHV-pC-lo3" id="D9W-gv-BAQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="microphone" width="100" height="100"/>
+        <image name="stop" width="50" height="50"/>
+    </resources>
 </document>
