@@ -13,13 +13,17 @@ class PlayerViewController: UIViewController {
 
 	var player = AVAudioPlayer()
 	var recievedAudioData = RecordedAudio()
+	var engine = AVAudioEngine()
+	var audioFile = AVAudioFile()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		
+		audioFile = AVAudioFile(forReading: recievedAudioData.filePathUrl, error: nil)
+		
         // Do any additional setup after loading the view.
-		//TODO: Get File Path
-		if let movieQuote = recievedAudioData.filePathUrl { //NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(fileName, ofType: fileType)!){
+		if let movieQuote = recievedAudioData.filePathUrl {
 			var error:NSError?
 			player = AVAudioPlayer(contentsOfURL: movieQuote, error: &error)
 			player.enableRate = true
@@ -33,8 +37,6 @@ class PlayerViewController: UIViewController {
 			print("Could not file the audio file: \(recievedAudioData.title)")
 		}
 		
-		//TODO: Create Instance of AVAudioPlayer
-		//TODO: Play the audio
 		
     }
 
@@ -45,44 +47,55 @@ class PlayerViewController: UIViewController {
 	
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
+		resetEngine()
+	}
+
+	
+	func manipulateAudio(audioRate: Float, audioPitch: Float){
+		var playerNode = AVAudioPlayerNode()
+		var timePitch = AVAudioUnitTimePitch()
 		
-		if player.playing{
-			player.stop()
-		}
+		resetEngine()
+		playerNode.stop()
+		
+		
+		timePitch.pitch = audioPitch
+		timePitch.rate = audioRate
+		
+		engine.attachNode(timePitch)
+		engine.attachNode(playerNode)
+		
+		engine.connect(playerNode, to: timePitch, format: nil)
+		engine.connect(timePitch, to: engine.outputNode, format: nil)
+		
+		playerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+		engine.startAndReturnError(nil)
+		
+		playerNode.play()
 	}
 	
-	func playAudioAtRate(audioRate: Float) -> Void{
-		if player.playing{
-			player.stop()
-			player.currentTime = 0
-		}
-		
-		player.rate = audioRate
-		player.play()
+	func resetEngine(){
+		engine.stop()
+		engine.reset()
 	}
-	
     
 	@IBAction func playAudioSlow(sender: UIButton) {
-		playAudioAtRate(0.5)
+		manipulateAudio(0.5, audioPitch: 1.0)
 	}
 
 	@IBAction func playAudioFast(sender: UIButton) {
-		playAudioAtRate(2.0)
+		manipulateAudio(2.0, audioPitch: 1.0)
 	}
 	@IBAction func stopAllAudio(sender: UIButton) {
-		if player.playing{
-			player.stop()
-			player.currentTime = 0
-		}
+		resetEngine()
 	}
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	@IBAction func highPitchedAudio(sender: AnyObject) {
+		manipulateAudio(1.0, audioPitch: 1000)
+	}
+	
+	@IBAction func downPitchAudio(sender: UIButton) {
+		manipulateAudio(1.0, audioPitch: -1000)
+	}
 
 }

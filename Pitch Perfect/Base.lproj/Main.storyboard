@@ -118,6 +118,26 @@
                                     <action selector="stopAllAudio:" destination="ONM-Fg-mgo" eventType="touchUpInside" id="avA-ns-M7g"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcS-mZ-igF">
+                                <rect key="frame" x="16" y="255" width="100" height="100"/>
+                                <animations/>
+                                <state key="normal" image="chipmunk">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="highPitchedAudio:" destination="ONM-Fg-mgo" eventType="touchUpInside" id="MRu-j4-bqH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRC-bS-Otr">
+                                <rect key="frame" x="484" y="255" width="100" height="100"/>
+                                <animations/>
+                                <state key="normal" image="darthvader">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="downPitchAudio:" destination="ONM-Fg-mgo" eventType="touchUpInside" id="DN8-7s-2wL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.23137254900000001" green="0.60392156860000001" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -129,7 +149,11 @@
                             <constraint firstItem="qhh-4Y-OY5" firstAttribute="top" secondItem="g5o-bS-CGK" secondAttribute="bottom" constant="32" id="IPo-FK-tfm"/>
                             <constraint firstItem="RbL-lf-bqH" firstAttribute="top" secondItem="wRk-h0-gbU" secondAttribute="bottom" constant="51" id="J0m-gb-f8Q"/>
                             <constraint firstItem="RbL-lf-bqH" firstAttribute="leading" secondItem="LTs-Sl-KKj" secondAttribute="trailing" constant="160" id="LV1-jE-l2Z"/>
+                            <constraint firstItem="wcS-mZ-igF" firstAttribute="leading" secondItem="Xai-XV-MeC" secondAttribute="leadingMargin" id="Wch-dF-jLB"/>
                             <constraint firstItem="LTs-Sl-KKj" firstAttribute="top" secondItem="wRk-h0-gbU" secondAttribute="bottom" constant="51" id="a9I-WE-dqW"/>
+                            <constraint firstItem="jRC-bS-Otr" firstAttribute="top" secondItem="RbL-lf-bqH" secondAttribute="bottom" constant="40" id="gRV-Rp-7Pe"/>
+                            <constraint firstItem="wcS-mZ-igF" firstAttribute="top" secondItem="LTs-Sl-KKj" secondAttribute="bottom" constant="40" id="gwg-wr-6WC"/>
+                            <constraint firstItem="jRC-bS-Otr" firstAttribute="trailing" secondItem="Xai-XV-MeC" secondAttribute="trailingMargin" id="nCe-s0-BHv"/>
                             <constraint firstItem="RbL-lf-bqH" firstAttribute="trailing" secondItem="Xai-XV-MeC" secondAttribute="trailingMargin" id="wwJ-X3-hPM"/>
                             <constraint firstAttribute="centerX" secondItem="g5o-bS-CGK" secondAttribute="centerX" id="xyq-9I-1bO"/>
                             <constraint firstAttribute="trailing" secondItem="RbL-lf-bqH" secondAttribute="trailing" constant="120" id="ybz-Xx-yWk"/>
@@ -168,6 +192,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chipmunk" width="100" height="100"/>
+        <image name="darthvader" width="100" height="100"/>
         <image name="fast" width="100" height="100"/>
         <image name="microphone" width="100" height="100"/>
         <image name="slow" width="100" height="100"/>
